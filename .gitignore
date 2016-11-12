@@ -1,0 +1,4 @@
+.DS_Store
+.vscode/
+gcron/gcron
+gcron/test.yaml
