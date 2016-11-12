@@ -2,3 +2,4 @@
 .vscode/
 gcron/gcron
 gcron/test.yaml
+bin/

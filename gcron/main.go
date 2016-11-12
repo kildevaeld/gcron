@@ -14,6 +14,9 @@ import (
 
 var configFiles []string
 var jsonOut bool
+var versionFlag bool
+
+var VERSION string
 
 func main() {
 
@@ -27,11 +30,17 @@ func realMain() error {
 
 	flag.StringSliceVarP(&configFiles, "file", "f", nil, "file")
 	flag.BoolVar(&jsonOut, "json", false, "")
+	flag.BoolVarP(&versionFlag, "version", "v", false, "")
 
 	flag.Parse()
 
 	if jsonOut {
 		logrus.SetFormatter(&logrus.JSONFormatter{})
+	}
+
+	if versionFlag {
+		fmt.Printf("gcron version %s\n", VERSION)
+		os.Exit(0)
 	}
 
 	c := gcron.NewCron()
@@ -52,9 +61,10 @@ func realMain() error {
 func printEvent(e gcron.TaskEvent) {
 	if start, ok := e.(*gcron.StartEvent); ok {
 		logrus.WithFields(logrus.Fields{
-			"jobID": start.JobID(),
+			"jobId": start.JobID(),
 			"time":  start.Time(),
 		}).Infof("Started %s", start.Name())
+
 	} else if end, ok := e.(*gcron.FinishEvent); ok {
 
 		logger := logrus.WithFields(logrus.Fields{
