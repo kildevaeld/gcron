@@ -3,3 +3,4 @@
 gcron/gcron
 gcron/test.yaml
 bin/
+vendor/
