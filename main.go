@@ -8,7 +8,7 @@ import (
 	"syscall"
 
 	"github.com/Sirupsen/logrus"
-	"github.com/kildevaeld/gcron"
+	"github.com/kildevaeld/gcron/internal"
 	flag "github.com/spf13/pflag"
 )
 
@@ -43,7 +43,7 @@ func realMain() error {
 		os.Exit(0)
 	}
 
-	c := gcron.NewCron()
+	c := internal.NewCron()
 
 	if len(configFiles) == 0 {
 		return errors.New("No cronfiles")
@@ -58,14 +58,14 @@ func realMain() error {
 	return listen(c)
 }
 
-func printEvent(e gcron.TaskEvent) {
-	if start, ok := e.(*gcron.StartEvent); ok {
+func printEvent(e internal.TaskEvent) {
+	if start, ok := e.(*internal.StartEvent); ok {
 		logrus.WithFields(logrus.Fields{
 			"jobId": start.JobID(),
 			"time":  start.Time(),
 		}).Infof("Started %s", start.Name())
 
-	} else if end, ok := e.(*gcron.FinishEvent); ok {
+	} else if end, ok := e.(*internal.FinishEvent); ok {
 
 		logger := logrus.WithFields(logrus.Fields{
 			"jobId":    end.JobID(),
@@ -81,7 +81,7 @@ func printEvent(e gcron.TaskEvent) {
 	}
 }
 
-func loadFiles(c *gcron.Cron) error {
+func loadFiles(c *internal.Cron) error {
 	for _, file := range configFiles {
 		if err := c.AddFile(file); err != nil {
 			return err
@@ -90,7 +90,7 @@ func loadFiles(c *gcron.Cron) error {
 	return nil
 }
 
-func listen(c *gcron.Cron) error {
+func listen(c *internal.Cron) error {
 	sigs := make(chan os.Signal, 1)
 	done := make(chan error, 1)
 	defer close(sigs)

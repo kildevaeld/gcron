@@ -1,4 +1,4 @@
-package gcron
+package internal
 
 import (
 	"context"
@@ -57,8 +57,10 @@ func (self *CronJob) run(stdout io.Writer, stderr io.Writer) error {
 	err := self.cmd.Start(ctx)
 
 	self.lock.Lock()
+
 	self.running = false
 	self.cmd = nil
+
 	self.lock.Unlock()
 
 	return err

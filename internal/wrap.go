@@ -1,4 +1,4 @@
-package gcron
+package internal
 
 import (
 	"context"

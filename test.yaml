@@ -1,0 +1,9 @@
+name: TestCron
+cron: "1 * * * *"
+script: >
+    console.log('Hello Beautiful world');
+    throw new Error("The is a serius error")
+interpreter: ["notto"]
+onerror:
+    script: cat $2 >> testcron.err
+    workdir: /home/rasmus
