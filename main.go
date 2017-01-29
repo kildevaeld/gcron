@@ -78,6 +78,12 @@ func printEvent(e internal.TaskEvent) {
 			logger.Infof("Completed %s", end.Name())
 		}
 
+	} else if loaded, ok := e.(*internal.LoadedEvent); ok {
+
+		logger := logrus.WithFields(logrus.Fields{
+			"jobId": loaded.JobID(),
+		})
+		logger.Infof("Loaded %s", loaded.Name())
 	}
 }
 
@@ -123,8 +129,8 @@ func listen(c *internal.Cron) error {
 		select {
 		case err := <-done:
 			return err
-		case err := <-c.Event():
-			printEvent(err)
+		case ev := <-c.Event():
+			printEvent(ev)
 		}
 	}
 

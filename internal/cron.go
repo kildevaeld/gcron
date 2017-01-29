@@ -73,6 +73,8 @@ func (self *Cron) Add(config CronJobConfig) error {
 		return err
 	}
 
+	self.c <- &LoadedEvent{job.job.id, job.job.config.Name}
+
 	self.jobs = append(self.jobs, job)
 
 	return nil
@@ -113,7 +115,7 @@ func (self *Cron) loadFromFile(path string) error {
 
 func NewCron() *Cron {
 
-	temp, err := ioutil.TempDir("", "")
+	temp, err := ioutil.TempDir("", "gcron")
 	if err != nil {
 		return nil
 	}

@@ -23,71 +23,6 @@ func (c *count32) get() int32 {
 
 var counter count32
 
-type TaskEvent interface {
-	JobID() string
-	Name() string
-}
-
-type StartEvent struct {
-	id   string
-	name string
-	time time.Time
-}
-
-func (self *StartEvent) JobID() string {
-	return self.id
-}
-
-func (self *StartEvent) Name() string {
-	return self.name
-}
-
-func (self *StartEvent) Time() time.Time {
-	return self.time
-}
-
-type FinishEvent struct {
-	id       string
-	name     string
-	duration time.Duration
-	err      error
-}
-
-func (self *FinishEvent) Name() string {
-	return self.name
-}
-
-func (self *FinishEvent) JobID() string {
-	return self.id
-}
-
-func (self *FinishEvent) Duration() time.Duration {
-	return self.duration
-}
-
-func (self *FinishEvent) Error() error {
-	return self.err
-}
-
-type ErrorEvent struct {
-	id       string
-	name     string
-	duration time.Duration
-	err      error
-}
-
-func (self *ErrorEvent) Name() string {
-	return self.name
-}
-
-func (self *ErrorEvent) JobID() string {
-	return self.id
-}
-
-func (self *ErrorEvent) Error() error {
-	return self.err
-}
-
 type wrapper struct {
 	job     *CronJob
 	c       chan<- TaskEvent
@@ -133,8 +68,8 @@ func (self *wrapper) Run() {
 
 	stdout.Close()
 	stderr.Close()
-	os.Remove(outpath)
-	os.Remove(errpath)
+	//os.Remove(outpath)
+	//os.Remove(errpath)
 
 }
 
@@ -144,8 +79,11 @@ func (self *wrapper) Stop() error {
 
 func (self *wrapper) getStreams(c CronJobConfig) (stdout *os.File, stderr *os.File, err error) {
 
-	stdoutPath := filepath.Join(self.logPath, fmt.Sprintf("%s-%s-%d.log", c.Name, self.job.id, time.Now().UnixNano()))
-	stderrPath := filepath.Join(self.logPath, fmt.Sprintf("%s-%s-%d.err", c.Name, self.job.id, time.Now().UnixNano()))
+	//stdoutPath := filepath.Join(self.logPath, fmt.Sprintf("%s-%s-%d.log", c.Name, self.job.id, time.Now().UnixNano()))
+	//stderrPath := filepath.Join(self.logPath, fmt.Sprintf("%s-%s-%d.err", c.Name, self.job.id, time.Now().UnixNano()))
+
+	stdoutPath := filepath.Join(self.logPath, fmt.Sprintf("gcron-task-%s-%s.log", c.Name, self.job.id))
+	stderrPath := filepath.Join(self.logPath, fmt.Sprintf("gcron-task-%s-%s.err", c.Name, self.job.id))
 
 	if stdout, err = os.Create(stdoutPath); err != nil {
 		// error
