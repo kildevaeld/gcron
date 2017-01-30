@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"io"
+	"os"
 	"strings"
 	"sync"
 	"time"
@@ -17,6 +18,7 @@ type JobConfig struct {
 	Command     string        `json:"command,omitempty"`
 	Script      string        `json:"script,omitempty"`
 	Env         exec.Environ  `json:"env"`
+	SysEnv      bool          `json:"sysenv"`
 	Interpreter []string      `json:"interpreter"`
 	User        string        `json:"user"`
 	Stdout      string        `json:"stdout"`
@@ -103,11 +105,16 @@ func (self *CronJob) getConfig(c JobConfig, stdout io.Writer, stderr io.Writer) 
 		cmds = strings.Split(c.Command, " ")
 	}
 
+	env := c.Env
+	if c.SysEnv {
+		env = exec.MergeEnviron(exec.Environ(os.Environ()), c.Env)
+	}
+
 	config := exec.Config{
 		Cmd:         cmds,
 		Script:      c.Script,
 		WorkDir:     c.Workdir,
-		Env:         c.Env,
+		Env:         env,
 		Interpreter: c.Interpreter,
 		Stdout:      stdout,
 		Stderr:      stderr,

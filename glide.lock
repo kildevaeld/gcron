@@ -1,12 +1,12 @@
 hash: 0bdcb23ccc07f325d13994894ed349e2796c9a4488c1d07b6ee689cfe4b1cded
-updated: 2016-11-16T22:07:16.227051873+01:00
+updated: 2017-01-30T16:41:00.443885637+01:00
 imports:
 - name: github.com/hashicorp/errwrap
   version: 7554cd9344cec97297fa6649b055a8c98c2a1e55
 - name: github.com/hashicorp/go-multierror
-  version: 8484912a3b9987857bac52e0c5fec2b95f419628
+  version: ed905158d87462226a13fe39ddf685ea65f1c11f
 - name: github.com/kildevaeld/exec
-  version: 176f5dcb0d19600d152c76daf86adf0f2f61da71
+  version: d5d7ef312350b3caf86f07c3abaf730219d9d2ef
   subpackages:
   - interpreters/notto
 - name: github.com/kildevaeld/go-ascii
@@ -20,7 +20,7 @@ imports:
 - name: github.com/kildevaeld/go-widgets
   version: ac6ef7e1554bae94b5c903a6524757bd49a4166f
 - name: github.com/kildevaeld/notto
-  version: 064a02b7b15ae5a246b8767f97affba9f4f570ff
+  version: 6962b3321f6717a6232e1503dc829c3b7fc75add
   subpackages:
   - loop
   - modules
@@ -52,7 +52,7 @@ imports:
   subpackages:
   - termios
 - name: github.com/robertkrimen/otto
-  version: bf1c3795ba078da6905fe80bfbc3ed3d8c36e9aa
+  version: 1c7376969459873387db43f2838ffab2aadf8010
   subpackages:
   - ast
   - dbg
@@ -65,7 +65,7 @@ imports:
 - name: github.com/Sirupsen/logrus
   version: d26492970760ca5d33129d2d799e34be5c4782eb
 - name: github.com/spf13/pflag
-  version: 5ccb023bc27df288a957c5e994cd44fd19619465
+  version: a9a634f3de0a7529baded7ad6b0c7467d5c6eca7
 - name: github.com/tj/go-spin
   version: 4bd47d3603b5c0460028794fbbf207f881088c08
 - name: golang.org/x/crypto
@@ -73,7 +73,7 @@ imports:
   subpackages:
   - ssh/terminal
 - name: golang.org/x/sys
-  version: b699b7032584f0953262cb2788a0ca19bb494703
+  version: d75a52659825e75fff6158388dddc6a5b04f9ba5
   subpackages:
   - unix
 - name: gopkg.in/sourcemap.v1
@@ -81,5 +81,5 @@ imports:
   subpackages:
   - base64vlq
 - name: gopkg.in/yaml.v2
-  version: a5b47d31c556af34a302ce5d659e6fea44d90de0
+  version: 4c78c975fe7c825c6d1466c42be594d1d6f3aba6
 testImports: []

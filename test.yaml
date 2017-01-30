@@ -1,5 +1,5 @@
 name: TestCron
-cron: "1 * * * *"
+cron: "* * * * *"
 script: >
     console.log('Hello Beautiful world');
     throw new Error("The is a serius error")
