@@ -1,13 +1,12 @@
 
 BUILDDIR?=${PWD}/bin
-VERSION?=0.0.1
+VERSION?=0.0.2
 MOUNT=src/github.com/kildevaeld/gcron
 .PHONY: build clean update build-alpine
 
 build: ${BUILDDIR}/gcron
 
 build-alpine:
-	
 	docker run -v ${PWD}:/go/${MOUNT} -w /go/${MOUNT} -v gobuilder:/go/src kildevaeld/go-builder sh -c "BUILDDIR=bin/alpine make"
 
 update:
