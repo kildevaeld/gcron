@@ -15,6 +15,7 @@ import (
 var configFiles []string
 var jsonOut bool
 var versionFlag bool
+var testFlag string
 
 var VERSION string
 
@@ -31,7 +32,7 @@ func realMain() error {
 	flag.StringSliceVarP(&configFiles, "file", "f", nil, "file")
 	flag.BoolVar(&jsonOut, "json", false, "")
 	flag.BoolVarP(&versionFlag, "version", "v", false, "")
-
+	flag.StringVarP(&testFlag, "test", "t", "", "Test a job")
 	flag.Parse()
 
 	if jsonOut {
@@ -53,9 +54,23 @@ func realMain() error {
 		return err
 	}
 
+	if testFlag != "" {
+		return testJob(testFlag, c)
+	}
+
 	c.Start()
 
 	return listen(c)
+}
+
+func testJob(name string, c *internal.Cron) error {
+
+	job := c.Get(name)
+	if job == nil {
+		return errors.New("no job with the name " + name)
+	}
+
+	return job.Run(os.Stdout, os.Stderr)
 }
 
 func printEvent(e internal.TaskEvent) {

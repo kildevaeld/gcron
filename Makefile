@@ -1,6 +1,6 @@
 
 BUILDDIR?=${PWD}/bin
-VERSION?=0.0.2
+VERSION?=0.0.3
 MOUNT=src/github.com/kildevaeld/gcron
 .PHONY: build clean update build-alpine
 

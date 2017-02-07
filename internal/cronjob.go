@@ -3,14 +3,14 @@ package internal
 import (
 	"context"
 	"errors"
+
+	"github.com/kildevaeld/exec"
+	system "github.com/kildevaeld/go-system"
 	"io"
 	"os"
 	"strings"
 	"sync"
 	"time"
-
-	"github.com/kildevaeld/exec"
-	system "github.com/kildevaeld/go-system"
 )
 
 type JobConfig struct {

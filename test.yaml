@@ -1,9 +1,10 @@
 name: TestCron
 cron: "* * * * *"
+sysenv: true
 script: >
-    console.log('Hello Beautiful world');
-    throw new Error("The is a serius error")
-interpreter: ["notto"]
+    console.dir(process.env)
+   
+interpreter: ["node", "-e"]
 onerror:
     script: cat $2 >> testcron.err
     workdir: /home/rasmus

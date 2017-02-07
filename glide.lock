@@ -1,5 +1,5 @@
 hash: 0bdcb23ccc07f325d13994894ed349e2796c9a4488c1d07b6ee689cfe4b1cded
-updated: 2017-01-30T16:41:00.443885637+01:00
+updated: 2017-02-07T14:17:15.496640003+01:00
 imports:
 - name: github.com/hashicorp/errwrap
   version: 7554cd9344cec97297fa6649b055a8c98c2a1e55
@@ -52,7 +52,7 @@ imports:
   subpackages:
   - termios
 - name: github.com/robertkrimen/otto
-  version: 1c7376969459873387db43f2838ffab2aadf8010
+  version: 6a77b7cbc37d0c39f7d5fa5766826e541df31fd5
   subpackages:
   - ast
   - dbg
@@ -63,9 +63,9 @@ imports:
 - name: github.com/robfig/cron
   version: b024fc5ea0e34bc3f83d9941c8d60b0622bfaca4
 - name: github.com/Sirupsen/logrus
-  version: d26492970760ca5d33129d2d799e34be5c4782eb
+  version: c078b1e43f58d563c74cebe63c85789e76ddb627
 - name: github.com/spf13/pflag
-  version: a9a634f3de0a7529baded7ad6b0c7467d5c6eca7
+  version: 9ff6c6923cfffbcd502984b8e0c80539a94968b7
 - name: github.com/tj/go-spin
   version: 4bd47d3603b5c0460028794fbbf207f881088c08
 - name: golang.org/x/crypto
@@ -73,7 +73,7 @@ imports:
   subpackages:
   - ssh/terminal
 - name: golang.org/x/sys
-  version: d75a52659825e75fff6158388dddc6a5b04f9ba5
+  version: 7a6e5648d140666db5d920909e082ca00a87ba2c
   subpackages:
   - unix
 - name: gopkg.in/sourcemap.v1

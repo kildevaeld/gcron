@@ -59,6 +59,17 @@ func (self *Cron) Clear() error {
 	return nil
 }
 
+func (self *Cron) Get(name string) *CronJob {
+
+	for _, wrapper := range self.jobs {
+		if wrapper.job.config.Name == name {
+			return wrapper.job
+		}
+	}
+
+	return nil
+}
+
 func (self *Cron) Add(config CronJobConfig) error {
 
 	if config.Command == "" && config.Script == "" {
