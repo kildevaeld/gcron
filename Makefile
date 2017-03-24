@@ -7,7 +7,7 @@ MOUNT=src/github.com/kildevaeld/gcron
 build: ${BUILDDIR}/gcron
 
 build-alpine:
-	docker run -v ${PWD}:/go/${MOUNT} -w /go/${MOUNT} -v gobuilder:/go/src kildevaeld/go-builder sh -c "BUILDDIR=bin/alpine make"
+	docker run -v ${PWD}:/go/${MOUNT} -w /go/${MOUNT} kildevaeld/go-builder sh -c "BUILDDIR=bin/alpine make"
 
 update:
 	glide update
