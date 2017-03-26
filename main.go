@@ -70,6 +70,8 @@ func testJob(name string, c *internal.Cron) error {
 		return errors.New("no job with the name " + name)
 	}
 
+	
+
 	return job.Run(os.Stdout, os.Stderr)
 }
 
